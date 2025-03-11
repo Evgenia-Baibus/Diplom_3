@@ -21,7 +21,6 @@ class TestRecoveryPassword:
         recovery_password_page = ForgotPasswordPage(driver)
         reset_password_page = ResetPasswordPage(driver)
 
-        # кажется. не надо кликать
         recovery_password_page.click_email_input()
         recovery_password_page.set_email()
         recovery_password_page.click_recovery_btn()

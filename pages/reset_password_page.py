@@ -8,7 +8,6 @@ class ResetPasswordPage(BasePage):
     password_hide_icon = (By.CLASS_NAME, 'input__icon-action')
     active_password_field = (By.CLASS_NAME, 'input_status_active')
 
-
     def wait_for_load_reset_password_page(self):
         self.wait_for_element(self.save_btn)
 

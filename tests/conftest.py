@@ -1,6 +1,9 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+
 from helpers import WebdriverFactory
+from pages.login_page import LoginPage
 from urls import Urls
 
 
@@ -12,12 +15,13 @@ def driver(request):
 
 @pytest.fixture
 def authorized_driver(driver):
-    driver.get(Urls.)
+    driver.get(Urls.LOGIN_PAGE)
 
-    WebDriverWait(driver, 3).until(ec.visibility_of_element_located(SignInPageLocators.sign_in_btn))
-    driver.find_element(*SignInPageLocators.name_input).send_keys(SignInData.email)
-    driver.find_element(*SignInPageLocators.password_input).send_keys(SignInData.password)
-    driver.find_element(*SignInPageLocators.sign_in_btn).click()
+    login_page = LoginPage(driver)
+    login_page.wait_for_load_login_page()
+    login_page.set_email()
+    login_page.set_password()
+    login_page.click_sign_in_btn()
 
     return driver
 
