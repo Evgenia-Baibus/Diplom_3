@@ -13,3 +13,7 @@ class IngredientDetailsPopUp(BasePage):
 
     def click_close_btn(self):
         self.click_element(self.close_btn)
+
+    def get_order_id(self):
+        order_id = self.wait_for_element(self.order_id).text
+        return order_id
