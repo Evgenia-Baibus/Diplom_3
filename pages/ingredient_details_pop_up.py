@@ -1,14 +1,19 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
+from urls import Urls
 
 
 class IngredientDetailsPopUp(BasePage):
-    ingredient_details_title = (By.XPATH, ".//h2[text() = 'Детали ингредиента']")
     close_btn = (By.CLASS_NAME, 'Modal_modal__close__TnseK')
 
-    def wait_for_load_ingredient_details_pop_up(self):
-        self.wait_for_element(self.ingredient_details_title)
+    @staticmethod
+    def ingredient_title(name):
+        return By.XPATH, f".//p[text() = '{name}']"
+
+    def is_opened(self, ingredient_name, ingredient_id):
+        self.wait_for_element(self.ingredient_title(ingredient_name))
+        return self.driver.current_url == Urls.make_ingredient_url(ingredient_id)
 
     def click_close_btn(self):
         self.click_element(self.close_btn)

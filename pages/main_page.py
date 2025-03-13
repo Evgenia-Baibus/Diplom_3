@@ -14,6 +14,10 @@ class MainPage(BasePage):
     create_order_zone = (By.XPATH, ".//span[@class = 'constructor-element__row']")
     sauces_section = (By.XPATH, ".//h2[text() = 'Соусы']")
 
+    @staticmethod
+    def ingredient(name):
+        return By.CSS_SELECTOR, f"img[alt*='{name}']"
+
     def is_loaded(self):
         self.wait_for_main_page()
         return self.driver.current_url == Urls.BASE_URL
@@ -21,8 +25,8 @@ class MainPage(BasePage):
     def wait_for_main_page(self):
         self.wait_for_element(self.place_order_btn)
 
-    def click_ingredient(self):
-        self.click_element(self.bun)
+    def click_ingredient(self, name):
+        self.click_element(self.ingredient(name))
 
     def is_main_page_open(self):
         return self.wait_for_element(self.sauces_section).text == 'Соусы'

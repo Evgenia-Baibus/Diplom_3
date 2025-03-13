@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from urls import Urls
 
 
 class OrderListPage(BasePage):
@@ -43,4 +44,8 @@ class OrderListPage(BasePage):
     def is_order_in_feed(self, order_id):
         order_in_feed = self.wait_for_element(self.order_in_feed, timeout=5)
         return order_in_feed.text == f'#0{order_id}'
+
+    def is_loaded(self):
+        self.wait_for_load_order_list_page()
+        return self.driver.current_url == Urls.FEED
 

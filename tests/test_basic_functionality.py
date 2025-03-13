@@ -23,26 +23,25 @@ class TestBasicFunctionality:
         header.click_order_list_btn()
         order_list.wait_for_load_order_list_page()
 
-        assert authorized_driver.current_url == Urls.FEED
+        assert order_list.is_loaded()
 
     def test_open_pop_up_with_ingredients_details(self, authorized_driver):
         main_page = MainPage(authorized_driver)
-        ingredient_details = IngredientDetailsPopUp(authorized_driver)
+        ingredient_details_pop_up = IngredientDetailsPopUp(authorized_driver)
 
         main_page.wait_for_main_page()
-        main_page.click_ingredient()
-        ingredient_details.wait_for_load_ingredient_details_pop_up()
+        main_page.click_ingredient(IngredientData.bun_name)
 
-        assert authorized_driver.current_url == Urls.make_ingredient_url(IngredientData.ingredient_id)
+        assert ingredient_details_pop_up.is_opened(IngredientData.bun_name, IngredientData.bun_id)
 
     def test_close_pop_up_with_ingredients_details(self, authorized_driver):
         main_page = MainPage(authorized_driver)
-        ingredient_details = IngredientDetailsPopUp(authorized_driver)
+        ingredient_details_pop_up = IngredientDetailsPopUp(authorized_driver)
 
         main_page.wait_for_main_page()
-        main_page.click_ingredient()
-        ingredient_details.wait_for_load_ingredient_details_pop_up()
-        ingredient_details.click_close_btn()
+        main_page.click_ingredient(IngredientData.bun_name)
+        ingredient_details_pop_up.is_opened(IngredientData.bun_name, IngredientData.bun_id)
+        ingredient_details_pop_up.click_close_btn()
 
         assert main_page.is_main_page_open()
 
