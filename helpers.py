@@ -1,7 +1,7 @@
 from selenium import webdriver
 import requests
 from faker import Faker
-from urls import Urls
+from urls import ApiUrls
 
 
 class WebdriverFactory:
@@ -39,16 +39,24 @@ class User:
     @staticmethod
     def sign_up_and_get_user_data():
         data = UserData.valid_data
-        response = requests.post(Urls.SIGN_UP, data=data)
+        response = requests.post(ApiUrls.SIGN_UP, data=data)
         return {"email": data["email"], "password": data["password"], "accessToken": response.json()["accessToken"]}
 
 
     @staticmethod
     def delete_user(access_token):
         headers = {"Authorization": access_token}
-        response = requests.delete(Urls.DELETE_USER, headers=headers)
+        response = requests.delete(ApiUrls.DELETE_USER, headers=headers)
         return response
 
+    @staticmethod
+    def create_order(access_token, ingredients):
+        headers = {"Authorization": access_token}
 
+        data = {
+            "ingredients": ingredients
+        }
 
+        response = requests.post(ApiUrls.CREATE_ORDER, headers = headers, data = data)
+        return response.json()['order']['number']
 

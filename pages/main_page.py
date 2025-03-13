@@ -3,6 +3,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
+from urls import Urls
 
 
 class MainPage(BasePage):
@@ -15,6 +16,10 @@ class MainPage(BasePage):
     order_id_title = (By.XPATH, ".//p[text() = 'идентификатор заказа']")
     close_btn = (By.CLASS_NAME, 'Modal_modal__close__TnseK')
     order_id = (By.XPATH,".//div[contains(@class, 'Modal_modal__contentBox__sCy8X')]/h2[contains(@class, 'Modal_modal__title_shadow__3ikwq')]")
+
+    def is_loaded(self):
+        self.wait_for_main_page()
+        return self.driver.current_url == Urls.BASE_URL
 
     def wait_for_main_page(self):
         self.wait_for_element(self.place_order_btn)

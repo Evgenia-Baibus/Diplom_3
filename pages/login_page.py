@@ -9,12 +9,12 @@ class LoginPage(BasePage):
 
 
     def login(self, login_data):
-        self._wait_for_load_login_page()
+        self.wait_for_load_login_page()
         self._set_email(login_data["email"])
         self._set_password(login_data["password"])
         self._click_sign_in_btn()
 
-    def _wait_for_load_login_page(self):
+    def wait_for_load_login_page(self):
         self.wait_for_element(self.recovery_password_btn)
 
     def click_recovery_password_btn(self):

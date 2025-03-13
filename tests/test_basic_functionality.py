@@ -1,5 +1,3 @@
-from wsgiref.headers import Headers
-
 from data import IngredientData
 from pages.header import Header
 from pages.ingredient_details_pop_up import IngredientDetailsPopUp
@@ -11,14 +9,12 @@ from urls import Urls
 class TestBasicFunctionality:
 
     def test_success_transition_to_constructor(self, authorized_driver):
-
         header = Header(authorized_driver)
         main_page = MainPage(authorized_driver)
 
         header.click_constructor_btn()
-        main_page.wait_for_main_page()
 
-        assert authorized_driver.current_url == Urls.BASE_URL
+        assert main_page.is_loaded()
 
     def test_success_transition_to_order_list(self, authorized_driver):
 
@@ -63,23 +59,4 @@ class TestBasicFunctionality:
         main_page.click_place_order_btn()
 
         assert main_page.is_main_page_open()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

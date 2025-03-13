@@ -17,8 +17,8 @@ class PersonalAccountPage(BasePage):
     def click_exit_btn(self):
         self.click_element(self.exit_btn)
 
-    def is_order_displayed(self, order_id):
+    def is_order_displayed(self, order_number):
         order_displayed = self.wait_for_element(self.order_displayed, timeout=5)
-        return order_displayed.text == f'#0{order_id}'
+        return order_displayed.text == f'#0{order_number}'
 
 
