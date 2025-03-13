@@ -17,7 +17,6 @@ class TestBasicFunctionality:
         assert main_page.is_loaded()
 
     def test_success_transition_to_order_list(self, authorized_driver):
-
         header = Header(authorized_driver)
         order_list = OrderListPage(authorized_driver)
 
@@ -27,7 +26,6 @@ class TestBasicFunctionality:
         assert authorized_driver.current_url == Urls.FEED
 
     def test_open_pop_up_with_ingredients_details(self, authorized_driver):
-
         main_page = MainPage(authorized_driver)
         ingredient_details = IngredientDetailsPopUp(authorized_driver)
 
@@ -49,7 +47,6 @@ class TestBasicFunctionality:
         assert main_page.is_main_page_open()
 
     def test_success_order_burger_for_authorized_user(self, authorized_driver):
-
         main_page = MainPage(authorized_driver)
 
         main_page.wait_for_main_page()
@@ -59,4 +56,3 @@ class TestBasicFunctionality:
         main_page.click_place_order_btn()
 
         assert main_page.is_main_page_open()
-

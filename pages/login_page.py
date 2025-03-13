@@ -30,5 +30,3 @@ class LoginPage(BasePage):
     def _click_sign_in_btn(self):
         self.scroll_to_element(self.sign_in_btn)
         self.click_element(self.sign_in_btn)
-
-

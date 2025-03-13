@@ -10,7 +10,6 @@ from pages.personal_account_page import PersonalAccountPage
 class TestOrderList:
 
     def test_open_pop_up_with_order_details(self, authorized_driver):
-
         header = Header(authorized_driver)
         order_list_page = OrderListPage(authorized_driver)
         order_details_pop_up = OrderDetailsPopUp(authorized_driver)
@@ -49,7 +48,6 @@ class TestOrderList:
 
         User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
 
-
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
 
@@ -66,26 +64,16 @@ class TestOrderList:
 
         User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
 
-
-
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
 
         assert order_list_page.is_order_counter_increase_today(order_count)
 
     def test_order_in_progress(self, authorized_driver, order_number):
-
         header = Header(authorized_driver)
         order_list_page = OrderListPage(authorized_driver)
-
 
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
 
         assert order_list_page.is_order_in_progress(order_number)
-
-
-
-
-
-

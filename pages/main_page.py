@@ -13,9 +13,6 @@ class MainPage(BasePage):
     fillings = (By.CSS_SELECTOR, "img[alt*='Мясо бессмертных моллюсков Protostomia']")
     create_order_zone = (By.XPATH, ".//span[@class = 'constructor-element__row']")
     sauces_section = (By.XPATH, ".//h2[text() = 'Соусы']")
-    order_id_title = (By.XPATH, ".//p[text() = 'идентификатор заказа']")
-    close_btn = (By.CLASS_NAME, 'Modal_modal__close__TnseK')
-    order_id = (By.XPATH,".//div[contains(@class, 'Modal_modal__contentBox__sCy8X')]/h2[contains(@class, 'Modal_modal__title_shadow__3ikwq')]")
 
     def is_loaded(self):
         self.wait_for_main_page()
@@ -41,22 +38,3 @@ class MainPage(BasePage):
 
     def click_place_order_btn(self):
         self.click_element(self.place_order_btn)
-
-    def click_close_btn(self):
-        self.click_element(self.close_btn)
-
-    def is_order_success_pop_up_open(self):
-        return self.wait_for_element(self.order_id_title).text == 'идентификатор заказа'
-
-    def get_order_id(self):
-        sleep(3)
-        order_id = self.wait_for_element(self.order_id).text
-        return order_id
-
-
-
-
-
-
-
-

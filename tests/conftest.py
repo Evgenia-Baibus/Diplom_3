@@ -32,9 +32,3 @@ def login_data():
 def order_number(login_data):
     order_number = User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
     return order_number
-
-
-
-
-#authorized_user_with_orders
-

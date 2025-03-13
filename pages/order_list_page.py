@@ -1,12 +1,8 @@
-from time import sleep
-
 from selenium.webdriver.common.by import By
-
 from pages.base_page import BasePage
 
 
 class OrderListPage(BasePage):
-
     order_list_title = (By.XPATH, ".//h1[text() = 'Лента заказов']")
     order_item = (By.XPATH, ".//ul[@class ='OrderFeed_list__OLh59']/li[1]")
     order_id = (By.XPATH, ".//ul[@class ='OrderFeed_list__OLh59']/li[1]/a/div/p")
@@ -28,7 +24,6 @@ class OrderListPage(BasePage):
         order_count_for_all_time = self.wait_for_element(self.order_count_for_all_time).text
         return int(order_count_for_all_time)
 
-
     def is_order_counter_increase_for_all_time(self, order_count_for_all_time):
         order_count_for_all_time_after = self.wait_for_element(self.order_count_for_all_time).text
         return int(order_count_for_all_time_after) > order_count_for_all_time
@@ -36,7 +31,6 @@ class OrderListPage(BasePage):
     def get_order_count_today(self):
         order_count_today = self.wait_for_element(self.order_count_today).text
         return int(order_count_today)
-
 
     def is_order_counter_increase_today(self, order_count_today):
         order_count_today_after = self.wait_for_element(self.order_count_today).text

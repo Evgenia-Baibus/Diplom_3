@@ -38,7 +38,3 @@ class TestRecoveryPassword:
         reset_password_page.click_password_hide_icon()
 
         assert reset_password_page.is_password_field_active()
-
-
-
-

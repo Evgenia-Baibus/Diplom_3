@@ -14,6 +14,5 @@ class ForgotPasswordPage(BasePage):
     def _click_email_input(self):
         self.click_element(self.email_field)
 
-
     def click_recovery_btn(self):
         self.click_element(self.recovery_btn)

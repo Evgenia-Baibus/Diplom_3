@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 
 class ResetPasswordPage(BasePage):
-
     save_btn = (By.XPATH, ".//button[text() = 'Сохранить']")
     password_hide_icon = (By.CLASS_NAME, 'input__icon-action')
     active_password_field = (By.CLASS_NAME, 'input_status_active')

@@ -8,7 +8,6 @@ from urls import Urls
 class TestPersonalAccount:
 
     def test_success_transition_to_personal_account(self, authorized_driver):
-
         header = Header(authorized_driver)
         personal_account_page = PersonalAccountPage(authorized_driver)
 
@@ -19,7 +18,6 @@ class TestPersonalAccount:
 
 
     def test_success_transition_to_history_section(self, authorized_driver):
-
         header = Header(authorized_driver)
         personal_account_page = PersonalAccountPage(authorized_driver)
 
@@ -33,7 +31,6 @@ class TestPersonalAccount:
         header = Header(authorized_driver)
         personal_account_page = PersonalAccountPage(authorized_driver)
         login_page = LoginPage(authorized_driver)
-
 
         header.click_personal_account_button()
         personal_account_page.wait_for_personal_account_page()
