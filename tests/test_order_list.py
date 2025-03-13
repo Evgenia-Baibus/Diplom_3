@@ -47,13 +47,6 @@ class TestOrderList:
         assert order_list_page.is_order_in_feed(order_id)
 
 
-
-
-
-
-
-
-
     def test_increase_order_counter_for_all_time(self, authorized_driver):
 
         header = Header(authorized_driver)

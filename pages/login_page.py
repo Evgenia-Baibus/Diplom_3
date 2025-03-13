@@ -1,6 +1,4 @@
 from selenium.webdriver.common.by import By
-
-from data import LoginData
 from pages.base_page import BasePage
 
 class LoginPage(BasePage):
@@ -10,20 +8,26 @@ class LoginPage(BasePage):
     sign_in_btn = (By.XPATH, ".//button[text() = 'Войти']")
 
 
-    def wait_for_load_login_page(self):
+    def login(self, login_data):
+        self._wait_for_load_login_page()
+        self._set_email(login_data["email"])
+        self._set_password(login_data["password"])
+        self._click_sign_in_btn()
+
+    def _wait_for_load_login_page(self):
         self.wait_for_element(self.recovery_password_btn)
 
     def click_recovery_password_btn(self):
         self.scroll_to_element(self.recovery_password_btn)
         self.click_element(self.recovery_password_btn)
 
-    def set_email(self):
-        self.send_keys_to_input(self.email_field, LoginData.email)
+    def _set_email(self, email):
+        self.send_keys_to_input(self.email_field, email)
 
-    def set_password(self):
-        self.send_keys_to_input(self.password_input, LoginData.password)
+    def _set_password(self, password):
+        self.send_keys_to_input(self.password_input, password)
 
-    def click_sign_in_btn(self):
+    def _click_sign_in_btn(self):
         self.scroll_to_element(self.sign_in_btn)
         self.click_element(self.sign_in_btn)
 
