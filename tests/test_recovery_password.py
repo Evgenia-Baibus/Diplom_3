@@ -1,3 +1,5 @@
+import allure
+
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
 from urls import Urls
@@ -6,6 +8,8 @@ from pages.login_page import LoginPage
 
 class TestRecoveryPassword:
 
+    @allure.title('Проверка перехода на страницу восстановления пароля по кнопке «Восстановить пароль»')
+    @allure.description('Кликнуть на кнопку «Восстановить пароль» на странице авторизации')
     def test_success_transition_to_forgot_password_page(self, driver):
         driver.get(Urls.LOGIN_PAGE)
 
@@ -14,6 +18,8 @@ class TestRecoveryPassword:
 
         assert driver.current_url == Urls.FORGOT_PASSWORD
 
+    @allure.title('Проверка ввода почты и клика по кнопке «Восстановить»')
+    @allure.description('Ввести почту и крикнуть на кнопку «Восстановить»')
     def test_success_transition_to_reset_password_page(self, driver, login_data):
         driver.get(Urls.FORGOT_PASSWORD)
 
@@ -26,6 +32,8 @@ class TestRecoveryPassword:
 
         assert driver.current_url == Urls.RESET_PASSWORD
 
+    @allure.title('Проверка, что клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его.')
+    @allure.description('Кликнуть на иконку показать/скрыть пароль и проверить, что поле подсвечено')
     def test_password_field_selection_when_click_on_password_hide_icon(self, driver, login_data):
         driver.get(Urls.FORGOT_PASSWORD)
 
