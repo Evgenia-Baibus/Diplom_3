@@ -54,6 +54,20 @@ class TestBasicFunctionality:
 
         assert main_page.is_main_page_open()
 
+    @allure.title('Проверка, что при добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента')
+    @allure.description('Проверяем каунтер до и после добавления ингредиента в заказ')
+    def test_increase_ingredient_counter(self, authorized_driver):
+        main_page = MainPage(authorized_driver)
+        main_page.wait_for_main_page()
+        bun = IngredientData.bun
+
+        count_before = main_page.get_ingredient_count(bun)
+        main_page.drag_and_drop_ingredient(bun)
+        count_after = main_page.get_ingredient_count(bun)
+
+        assert count_after > count_before
+
+
     @allure.title('Проверка оформления заказа авторизованным пользователем')
     @allure.description('Добавляем ингредиенты в заказ и проверяем, что создается заказ')
     def test_success_order_burger_for_authorized_user(self, authorized_driver):
@@ -66,5 +80,3 @@ class TestBasicFunctionality:
         main_page.click_place_order_btn()
 
         assert main_page.is_main_page_open()
-
-    # еще 1 тест - при добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента

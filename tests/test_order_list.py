@@ -50,14 +50,15 @@ class TestOrderList:
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
 
-        order_count = order_list_page.get_order_count_for_all_time()
+        order_count_before = order_list_page.get_order_count_for_all_time()
 
         User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
 
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
+        order_count_after = order_list_page.get_order_count_for_all_time()
 
-        assert order_list_page.is_order_counter_increase_for_all_time(order_count)
+        assert order_count_after > order_count_before
 
     @allure.title('При создании нового заказа счётчик «Выполнено за сегодня» увеличивается')
     @allure.description('Счетчик до оформления заказа меньше счетчика после оформления')
@@ -68,14 +69,15 @@ class TestOrderList:
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
 
-        order_count = order_list_page.get_order_count_today()
+        order_count_before = order_list_page.get_order_count_today()
 
         User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
 
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
+        order_count_after = order_list_page.get_order_count_today()
 
-        assert order_list_page.is_order_counter_increase_today(order_count)
+        assert order_count_after > order_count_before
 
     @allure.title('После оформления заказа его номер появляется в разделе «В работе»')
     @allure.description('После оформления заказа его номер отображается в разделе «В работе»')

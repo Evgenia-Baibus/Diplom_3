@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -7,16 +8,17 @@ class LoginPage(BasePage):
     password_input = (By.XPATH, ".//input[@name = 'Пароль']")
     sign_in_btn = (By.XPATH, ".//button[text() = 'Войти']")
 
-
+    @allure.step('Авторизация пользователя')
     def login(self, login_data):
-        self.wait_for_load_login_page()
         self._set_email(login_data["email"])
         self._set_password(login_data["password"])
         self._click_sign_in_btn()
 
+    @allure.step('Загрузка страницы авторизации пользователя')
     def wait_for_load_login_page(self):
         self.wait_for_element(self.recovery_password_btn)
 
+    @allure.step('Нажать на кнопку восстановления пароля')
     def click_recovery_password_btn(self):
         self.scroll_to_element(self.recovery_password_btn)
         self.click_element(self.recovery_password_btn)

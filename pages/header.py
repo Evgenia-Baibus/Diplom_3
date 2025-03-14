@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -7,11 +8,14 @@ class Header(BasePage):
     constructor_btn = (By.XPATH, ".//p[text() = 'Конструктор']")
     order_list_btn = (By.XPATH, ".//p[text() = 'Лента Заказов']")
 
+    @allure.step('Нажать на раздел «Личный кабинет»')
     def click_personal_account_button(self):
         self.click_element(self.personal_account_btn)
 
+    @allure.step('Нажать на раздел «Конструктор»')
     def click_constructor_btn(self):
         self.click_element(self.constructor_btn)
 
+    @allure.step('Нажать на раздел «Лента заказов»')
     def click_order_list_btn(self):
         self.click_element(self.order_list_btn)

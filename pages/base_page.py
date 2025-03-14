@@ -1,4 +1,3 @@
-import allure
 from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
@@ -26,8 +25,6 @@ class BasePage:
         element = self.wait_for_element(locator)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-
-    @allure.step('JS скрипт для метода перетаскивания')
     def drag_and_drop(self, source_locator, target_locator):
         from_element = self.wait_for_element(source_locator)
         to_element = self.wait_for_element(target_locator)
