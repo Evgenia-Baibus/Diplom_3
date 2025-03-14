@@ -6,7 +6,7 @@ from pages.login_page import LoginPage
 from urls import Urls
 
 
-@pytest.fixture(params = ['firefox'])
+@pytest.fixture(params = ['firefox', 'chrome'])
 def driver(request):
     driver = WebdriverFactory.get_webdriver(request.param)
     yield driver
