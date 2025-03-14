@@ -12,7 +12,7 @@ class IngredientDetailsPopUp(BasePage):
     def ingredient_title(name):
         return By.XPATH, f".//p[text() = '{name}']"
 
-    @allure.step('Открытие главной страницы')
+    @allure.step('Открыть главную страницу')
     def is_opened(self, ingredient_name, ingredient_id):
         self.wait_for_element(self.ingredient_title(ingredient_name))
         return self.driver.current_url == Urls.make_ingredient_url(ingredient_id)

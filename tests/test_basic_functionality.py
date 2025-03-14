@@ -72,11 +72,14 @@ class TestBasicFunctionality:
     @allure.description('Добавляем ингредиенты в заказ и проверяем, что создается заказ')
     def test_success_order_burger_for_authorized_user(self, authorized_driver):
         main_page = MainPage(authorized_driver)
+        bun = IngredientData.bun
+        sauce = IngredientData.sauce
+        filling = IngredientData.filling
 
         main_page.wait_for_main_page()
-        main_page.drag_and_drop_bun()
-        main_page.drag_and_drop_sauces()
-        main_page.drag_and_drop_fillings()
+        main_page.drag_and_drop_ingredient(bun)
+        main_page.drag_and_drop_ingredient(sauce)
+        main_page.drag_and_drop_ingredient(filling)
         main_page.click_place_order_btn()
 
         assert main_page.is_main_page_open()

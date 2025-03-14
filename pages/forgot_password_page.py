@@ -12,6 +12,6 @@ class ForgotPasswordPage(BasePage):
     def set_email(self, email):
         self.send_keys_to_input(self.email_field, email)
 
-    @allure.step('Нажать на кнопку Восстановить')
+    @allure.step('Нажать на кнопку «Восстановить»')
     def click_recovery_btn(self):
         self.click_element(self.recovery_btn)

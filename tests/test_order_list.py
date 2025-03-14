@@ -52,7 +52,7 @@ class TestOrderList:
 
         order_count_before = order_list_page.get_order_count_for_all_time()
 
-        User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
+        self.__make_order(login_data)
 
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
@@ -71,7 +71,7 @@ class TestOrderList:
 
         order_count_before = order_list_page.get_order_count_today()
 
-        User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
+        self.__make_order(login_data)
 
         header.click_order_list_btn()
         order_list_page.wait_for_load_order_list_page()
@@ -89,3 +89,9 @@ class TestOrderList:
         order_list_page.wait_for_load_order_list_page()
 
         assert order_list_page.is_order_in_progress(order_number)
+
+
+    @staticmethod
+    @allure.step('Сделать заказ')
+    def __make_order(login_data):
+        User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
