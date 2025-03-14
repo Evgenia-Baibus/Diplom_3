@@ -1,3 +1,5 @@
+from time import sleep
+
 import allure
 
 from data import IngredientData
@@ -95,3 +97,4 @@ class TestOrderList:
     @allure.step('Сделать заказ')
     def __make_order(login_data):
         User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
+        sleep(1) # give ui time to update

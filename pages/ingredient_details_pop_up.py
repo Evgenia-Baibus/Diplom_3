@@ -8,7 +8,6 @@ class IngredientDetailsPopUp(BasePage):
     close_btn = (By.CLASS_NAME, 'Modal_modal__close__TnseK')
 
     @staticmethod
-    @allure.step('Функция возвращает локатор с введенным текстом')
     def ingredient_title(name):
         return By.XPATH, f".//p[text() = '{name}']"
 
