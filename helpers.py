@@ -1,6 +1,11 @@
+from time import sleep
+
+import allure
 from selenium import webdriver
 import requests
 from faker import Faker
+
+from data import IngredientData
 from urls import ApiUrls
 
 
@@ -60,3 +65,8 @@ class User:
         response = requests.post(ApiUrls.CREATE_ORDER, headers = headers, data = data)
         return response.json()['order']['number']
 
+    @staticmethod
+    @allure.step('Сделать заказ')
+    def make_order(login_data):
+        User.create_order(login_data['accessToken'], [IngredientData.ingredient_id])
+        sleep(1)  # give ui time to update
