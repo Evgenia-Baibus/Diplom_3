@@ -1,0 +1,22 @@
+import allure
+
+from pages.base_page import BasePage
+from selenium.webdriver.common.by import By
+
+
+class ResetPasswordPage(BasePage):
+    save_btn = (By.XPATH, ".//button[text() = 'Сохранить']")
+    password_hide_icon = (By.CLASS_NAME, 'input__icon-action')
+    active_password_field = (By.CLASS_NAME, 'input_status_active')
+
+    @allure.step('Загрузка страницы восстановления пароля')
+    def wait_for_load_reset_password_page(self):
+        self.wait_for_element(self.save_btn)
+
+    @allure.step('Нажать на кнопку "показать/скрыть" пароль')
+    def click_password_hide_icon(self):
+        self.click_element(self.password_hide_icon)
+
+    @allure.step('Проверить, что поле ввоза пароля стало активным')
+    def is_password_field_active(self):
+        return self.wait_for_element(self.active_password_field).text == 'Пароль'
